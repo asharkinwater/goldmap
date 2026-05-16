@@ -1,0 +1,384 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.531, 37.838] },
+      "properties": {
+        "id": 1, "name": "South Fork Tuolumne — South Fork Campground",
+        "rank": 1, "category": "placer_river", "owner": "USFS Stanislaus NF",
+        "drive_min": 25, "claim_density": "low-medium",
+        "access": "High-clearance vehicle; Lumsden Rd storm closure in effect — call Groveland RD first",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Fine-to-coarse placer; coarser near bedrock contacts",
+        "why_promising": "Fed the Golden Rock Water Co. hydraulic placer ops at Groveland/Big Oak Flat. Calaveras Fm metasedimentary-to-granite bedrock transition at confluence = classic gold trap. Metal detect exposed bedrock in low water.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Confirm Lumsden Road open before driving. Free primitive camp, vault toilet.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.531, 37.843] },
+      "properties": {
+        "id": 2, "name": "Lumsden Bridge — Main Tuolumne River",
+        "rank": 2, "category": "placer_river", "owner": "USFS Stanislaus NF",
+        "drive_min": 30, "claim_density": "medium",
+        "access": "High-clearance, same road as Area 1 — storm closure may apply",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, nuggets documented in modern era",
+        "why_promising": "Principal Gold Rush river. Camps at Don Pedro's Bar, Texas Bar, Indian Bar along this reach. 18-oz nugget found nearby. Exposed Calaveras Fm schist/limestone = natural bedrock pockets worth detecting.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Wild & Scenic corridor — no motorized equipment on trails. Active claim CAMC297104 in drainage. Verify spot before working.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.453, 37.727] },
+      "properties": {
+        "id": 3, "name": "Ward's Ferry — Lower Tuolumne (BLM)",
+        "rank": 3, "category": "placer_river", "owner": "BLM Mother Lode Field Office",
+        "drive_min": 50, "claim_density": "medium",
+        "access": "Paved Bonds Flat Road from La Grange. Passenger car OK.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, nuggets — downstream from all the rich upper districts",
+        "why_promising": "BLM-managed lower Tuolumne. Downstream from historically richest upper river placers. Gold concentrates in inside bends and bedrock cracks.",
+        "permit_required": false, "contact": "BLM Mother Lode FO: (916) 941-3101",
+        "notes": "Paved access — best option when Lumsden Road is closed. No seasonal closure.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.198, 37.870] },
+      "properties": {
+        "id": 4, "name": "Clavey River — FR 1N01 Crossings",
+        "rank": 4, "category": "placer_river", "owner": "USFS Stanislaus NF",
+        "drive_min": 45, "claim_density": "medium",
+        "access": "Unpaved FR 3N01 → 1N01. High-clearance required. April–December only.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, bedrock pocket gold, nuggets",
+        "why_promising": "Last major undammed river in region — uninterrupted gold transport since Gold Rush. Bedrock pockets historically called 'Gold Traps.' Fault-zone gold = coarser than drift-reworked placers. Great for detecting.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Claim CAMC317087 active — work near road crossings and avoid staked ground. Confirm equipment rules with Groveland RD.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.108, 37.850] },
+      "properties": {
+        "id": 5, "name": "Andresen Mine Trail — Cherry Creek / Tuolumne Canyon",
+        "rank": 5, "category": "placer_hike", "owner": "USFS Stanislaus NF",
+        "drive_min": 30, "claim_density": "low-medium",
+        "access": "Paved to Cherry Lake Rd trailhead. 4.9-mi round trip hike (652 ft gain). Foot only.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Fine-to-coarse placer, detectable mine tailings along trail",
+        "why_promising": "1862-era documented placer history on Cherry Creek. Named Andresen Mine workings visible along trail. Multiple gold-bearing tributaries cross the route. Less visited = less picked over.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Foot traffic only in Wild & Scenic corridor. Verify specific spots before working.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-119.904, 37.858] },
+      "properties": {
+        "id": 6, "name": "Middle Fork Tuolumne — Evergreen Road Day Use",
+        "rank": 6, "category": "placer_river", "owner": "USFS Stanislaus NF",
+        "drive_min": 35, "claim_density": "low",
+        "access": "Paved Hwy 120 + Evergreen Road all the way. Vault toilet, parking.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer likely — steep gradient, little-worked",
+        "why_promising": "Steep gradient through metamorphic gold belt = bedrock cracks and potholes concentrate coarse gold. Low claim density = less competition. Good detecting target.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Post-fire hazard zone — stay on designated routes.", "verify_claims": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.048, 37.611] },
+      "properties": {
+        "id": 7, "name": "Merced River — Briceburg BLM Recreation Area",
+        "rank": 7, "category": "blm_designated", "owner": "BLM Mother Lode Field Office",
+        "drive_min": 75, "claim_density": "low",
+        "access": "Paved Hwy 140 to Briceburg. Walk 2.3–4.5 mi to campgrounds via suspension bridge.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, nuggets — historically documented at McCabe Flat, Willow Placer",
+        "why_promising": "BLM explicitly endorses prospecting here. Mariposa Formation slates/greenstones. Old workings visible throughout canyon. Nuggets still occasionally found.",
+        "permit_required": false, "contact": "Briceburg Visitor Center: (209) 379-9414",
+        "notes": "Best formally endorsed site. Camping fee $20/night at developed sites.", "verify_claims": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.378, 37.846] },
+      "properties": {
+        "id": 8, "name": "Woods Creek — Chinese Camp / Jamestown (BLM only)",
+        "rank": 8, "category": "placer_river", "owner": "BLM + Private (mixed)",
+        "drive_min": 30, "claim_density": "high",
+        "access": "Fully paved Hwy 49. Highway access, no hiking required.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, nuggets — 18-oz nugget found in recent years",
+        "why_promising": "Ground zero of Tuolumne County Gold Rush 1848. $2.5M+ placer gold. 18-oz 'Groucho's Nugget' found modern era. Proven coarse gold area.",
+        "permit_required": false, "contact": "CA Gold Panning commercial: (209) 916-5166",
+        "notes": "HIGH claim density — verify open BLM ground on thediggings.com map BEFORE going.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.228, 37.800] },
+      "properties": {
+        "id": 9, "name": "Garrote Creek / Rattlesnake Creek — Groveland Area",
+        "rank": 9, "category": "placer_detect", "owner": "USFS Stanislaus NF (upper reaches)",
+        "drive_min": 10, "claim_density": "low-medium",
+        "access": "Close to town. Upper USFS reaches accessible via local forest roads. Passenger car to trailhead.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer; lode tailings from Longfellow Mine nearby",
+        "why_promising": "Gold discovered here 1849 by James Savage. Rich enough to justify building the Golden Rock Water Ditch. Longfellow lode mine ($500K+ / 24,200 oz production) sits on Rattlesnake Creek — downstream bedrock = coarser material from vein erosion. CAUTION: Longfellow tailings are contaminated (arsenic/mercury) — work downstream creek gravels only.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Closest area to Groveland with documented coarse gold. Do NOT work tailings directly — arsenic/mercury contamination. Work downstream creek gravels on USFS land.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.210, 37.810] },
+      "properties": {
+        "id": 10, "name": "Turnback Creek — Groveland",
+        "rank": 10, "category": "placer_detect", "owner": "USFS Stanislaus NF",
+        "drive_min": 15, "claim_density": "medium",
+        "access": "West tributary of South Fork Tuolumne. Forest roads from Groveland.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer — documented 1856, re-staked 2019",
+        "why_promising": "Documented placer gold since 1856. Critically: someone staked a 20-acre claim here in 2019 (CAMC322672) — recent local knowledge confirms gold is still being found. Claims are 20 acres, leaving unclaimed sections to work. Verify open ground via MLRS.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Verify unclaimed sections against BLM MLRS before working. Staked 2019 = active modern prospecting activity on this creek.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.065, 37.835] },
+      "properties": {
+        "id": 11, "name": "Big Creek — Upper USFS Land (above Pine Mountain Lake)",
+        "rank": 11, "category": "placer_detect", "owner": "USFS Stanislaus NF",
+        "drive_min": 20, "claim_density": "low",
+        "access": "Forest roads above Pine Mountain Lake community. Verify road access with Groveland RD.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Elluvial/residual coarse gold — un-hydraulicked upper drainage",
+        "why_promising": "Historical record: 'thousands of dollars in placer gold taken from Big Creek.' Upper reaches on USFS land were never hydraulically mined — residual/elluvial gold remains closer to source veins, meaning coarser. Detecting dry gulch bedrock in late summer (low water) is ideal.",
+        "permit_required": false, "contact": "Groveland RD: (209) 962-7825",
+        "notes": "Pine Mountain Lake itself is private gated community — access USFS land above it only. Low claim density = good target.", "verify_claims": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.421, 37.890] },
+      "properties": {
+        "id": 12, "name": "Sullivan Creek — Chinese Camp District",
+        "rank": 12, "category": "nugget_historic", "owner": "Mixed — verify parcels",
+        "drive_min": 35, "claim_density": "high",
+        "access": "Near Chinese Camp off Hwy 49. Lower creek under Don Pedro Reservoir. Upper portions accessible — verify land status.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "DOCUMENTED GIANT NUGGETS — 28 lb nugget + 360 oz (22.5 lb) piece found here",
+        "why_promising": "Sullivan Creek produced two of the largest nuggets documented in Tuolumne County history: a 28-pound nugget and a 360-ounce oblong piece of native gold. Serpentinite belt contact = coarser gold. Despite reservoir flooding lower reaches, upper drainage still on accessible land.",
+        "permit_required": false, "contact": "BLM Mother Lode FO: (916) 941-3101",
+        "notes": "MUST verify land status parcel by parcel — mix of private, BLM, and USFS. Lower creek flooded by Don Pedro Reservoir. High claim density. This is priority research territory given the documented nugget history.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.384, 37.960] },
+      "properties": {
+        "id": 13, "name": "Table Mountain Basalt Channels — Columbia/Jamestown",
+        "rank": 13, "category": "nugget_historic", "owner": "USFS + BLM + State Park (mixed)",
+        "drive_min": 40, "claim_density": "medium",
+        "access": "Hwy 49 to Columbia State Historic Park and surrounding BLM land. Paved.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "COARSE GOLD, LARGE NUGGETS — ancient buried river channel preserved under basalt",
+        "why_promising": "Table Mountain basalt (9 Ma) buried an ancient Eocene river channel carrying concentrated Tertiary gold gravels. Gold was never reground to flour — it stayed coarse because the channel was capped and preserved. Miners in the 1850s followed this channel and found enormous concentrations. Exposed edges where the channel meets modern drainages are still productive. Best coarse-gold geology in the region.",
+        "permit_required": false, "contact": "Tuolumne County: check Columbia State Historic Park rules for panning",
+        "notes": "Columbia State Historic Park: panning allowed but gold pan + hands only, no tools, 15 lb material limit. Surrounding BLM land has looser rules. Avoid active claims (density is medium). This geology produces nuggets specifically because gold was never reground.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.950, 37.720] },
+      "properties": {
+        "id": 14, "name": "Mokelumne River — Electra / Middle Bar BLM",
+        "rank": 14, "category": "placer_river", "owner": "BLM Mother Lode Field Office",
+        "drive_min": 90, "claim_density": "low-medium",
+        "access": "Electra Road off Hwy 88, or Middle Bar Road from Valley Springs. High-clearance preferred.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, nuggets — one of the coarsest gold rivers in the Sierra",
+        "why_promising": "Mokelumne River is historically considered to have some of the coarsest placer gold in the Mother Lode — larger grain size than Tuolumne or Stanislaus. Active prospecting community confirms coarse gold and nuggets still found. BLM land along river corridor has open sections.",
+        "permit_required": false, "contact": "BLM Mother Lode FO: (916) 941-3101",
+        "notes": "~90 min from Groveland. Worth the drive for the grain size difference. Verify specific BLM vs private parcels before working.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-121.560, 39.520] },
+      "properties": {
+        "id": 15, "name": "Feather River — Oroville / Pulga BLM (North Fork)",
+        "rank": 15, "category": "nugget_historic", "owner": "BLM Redding Field Office",
+        "drive_min": 180, "claim_density": "medium",
+        "access": "Hwy 70 through Feather River Canyon. Pulga area accessible by car. Some areas require hiking.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "LARGE NUGGETS — Feather River is legendary for multi-ounce nuggets",
+        "why_promising": "Feather River is arguably the most productive nugget river in California history. The Sixteen to One Mine area in Alleghany (nearby) produced some of the largest gold specimens ever found in CA. The river canyon cuts through rich gold-bearing metamorphic rocks. Modern detectorists regularly pull multi-ounce nuggets from the canyon. 3-hour drive but tier-1 nugget territory.",
+        "permit_required": false, "contact": "BLM Redding FO: (530) 224-2100",
+        "notes": "~3 hrs from Groveland but best large-nugget potential in Northern California. North Fork canyon is BLM land with accessible stretches off Hwy 70. Oroville area has gold dredge operations (commercial) near the river mouth.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-121.040, 39.260] },
+      "properties": {
+        "id": 16, "name": "Yuba River — Bridgeport / South Fork (USFS + BLM)",
+        "rank": 16, "category": "placer_river", "owner": "USFS Tahoe NF + BLM",
+        "drive_min": 150, "claim_density": "medium",
+        "access": "Hwy 20 to South Yuba River State Park (Bridgeport). Paved. Accessible beach areas.",
+        "panning": true, "sluicing": true, "metal_detecting": true, "suction_dredge": false,
+        "gold_type": "Coarse placer, nuggets — Malakoff Diggins fed this drainage",
+        "why_promising": "South Yuba River received runoff from Malakoff Diggins (largest hydraulic gold mine in CA history). Enormous quantities of coarse gold were released into the drainage. Bridgeport area BLM/State Park land is open for recreational panning. Nuggets pulled by detectorists on a regular basis.",
+        "permit_required": false, "contact": "South Yuba River State Park: (530) 432-2546",
+        "notes": "~2.5 hrs from Groveland. Bridgeport area has a historic suspension bridge and established parking. Check claim status for specific bars downstream.", "verify_claims": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.22049, 37.96115] },
+      "properties": {
+        "id": 101, "name": "South United Mines (MRDS #10310685)",
+        "rank": 0, "category": "lode_mine", "owner": "Private — downstream creeks may be USFS",
+        "drive_min": 50, "claim_density": "high",
+        "gold_type": "Documented 'both coarse and fine' native gold — $3.2M production",
+        "why_promising": "Dead Horse + New Albany veins, 2-5 ft wide, N35-45W strike. Gold concentrated at granodiorite dike/diorite dike intersections. Downstream creek sediments feed into North Fork Tuolumne tributaries. Creek gravels below this mine are worth detecting.",
+        "notes": "Mine portal is PRIVATE. Target downstream creek gravels on unclaimed USFS land. MRDS coords ±500m accuracy.",
+        "mrds_id": "10310685", "production_value": "$3.2M"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.26188, 37.98675] },
+      "properties": {
+        "id": 102, "name": "Soulsby Mine (MRDS #10310683)",
+        "rank": 0, "category": "lode_mine", "owner": "Private",
+        "drive_min": 55, "claim_density": "high",
+        "gold_type": "Free gold in quartz veins — $6.75M production, East Belt's largest",
+        "why_promising": "N10-20W striking veins, 80°NE dip in granodiorite/schist. Erratic but very rich ore shoots. One of the biggest East Belt producers — significant residual coarse gold in erosional drainage below.",
+        "notes": "Mine is private. Study the drainage downstream toward unnamed Stanislaus NF land.",
+        "mrds_id": "10310683", "production_value": "$6.75M"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.41767, 37.94992] },
+      "properties": {
+        "id": 103, "name": "Jamestown Mine Group — Dutch-App / Harvard / Rawhide (MRDS #10072448)",
+        "rank": 0, "category": "lode_mine", "owner": "Private / Reclaimed",
+        "drive_min": 50, "claim_density": "high",
+        "gold_type": "Mother Lode quartz-vein gold; Dutch-App ~$9M production",
+        "why_promising": "Melones Fault Zone. Dutch-App, Harvard, Crystalline, Nyman, Jumper, Rawhide all in serpentinite/schist contact. Harvard open pit exposed 4.99M oz historical vein material. Eluvial placer on pit margins + adjacent BLM land worth checking.",
+        "notes": "Reclaimed open pit. Serpentinite/schist contact = coarser gold. Check BLM LR2000 for unclaimed land adjacent to pit margin.",
+        "mrds_id": "10072448", "production_value": "$9M+ (Dutch-App alone)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.39564, 37.86689] },
+      "properties": {
+        "id": 104, "name": "Eagle-Shawmut Mine — Serpentinite/Slate Contact (MRDS #10310611)",
+        "rank": 0, "category": "lode_mine", "owner": "Private",
+        "drive_min": 45, "claim_density": "high",
+        "gold_type": "Auriferous pyrite + free native gold at serpentine/slate contact — $7.4M production",
+        "why_promising": "Located directly at serpentinite/slate contact on Melones Fault Zone. Two veins: Shawmut (33 ft wide!) + Eagle (12 ft). Operated 97 years. Classic mariposite-bearing serpentinite footwall. Drainage below mine toward Wood Creek/Tuolumne may have coarse erosional placer.",
+        "notes": "Mine portal is PRIVATE. Mariposite (chrome mica) in outcropping serpentinite is a pathfinder — if you see greenish-chrome schist near a creek, you're in the right geology.",
+        "mrds_id": "10310611", "production_value": "$7.4M"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.3869, 37.98841] },
+      "properties": {
+        "id": 105, "name": "Bonanza Mine — Pocket Belt / Telluride Gold (MRDS #10310593)",
+        "rank": 0, "category": "lode_mine", "owner": "Private",
+        "drive_min": 50, "claim_density": "medium",
+        "gold_type": "Crystallized pocket gold + tellurides (petzite, sylvanite, calaverite) — $300K/WEEK peak 1879",
+        "why_promising": "Famous pocket mine. Telluride minerals indicate epithermal system with coarse crystallized native gold in pockets. Eroded pocket material contributed ~$100M downstream to Columbia/Sonora placers. Eluvial detecting above limestone outcrop on any accessible BLM land nearby.",
+        "notes": "Pocket Belt style: quartz/calcite seams inches wide swelling to rich nodes. Limestone/marble contacts are key trap. Private mine — look for BLM parcels adjacent.",
+        "mrds_id": "10310593", "production_value": "$300K/week peak (1879)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.40068, 38.0348] },
+      "properties": {
+        "id": 106, "name": "Columbia District — Karst Placer / Nuggets to 72 lbs (MRDS #10310604)",
+        "rank": 0, "category": "lode_mine", "owner": "CA State Park (center) + BLM (perimeter)",
+        "drive_min": 45, "claim_density": "medium",
+        "gold_type": "COARSE GOLD, NUGGETS TO 72 LBS — Paleozoic limestone karst placer",
+        "why_promising": "Gold trapped in carbonate karst potholes = natural riffles. Gold never reground to flour — angular nuggets. $55-150M production. Limestone dissolution cavities remain unexploited around park perimeter on BLM land. Best geology for detecting eluvial pockets.",
+        "notes": "Columbia State Historic Park: panning in demo area only, hand-pan + hands, 15 lb material limit. BLM land surrounds the park — open for casual use. Best coarse-gold geology type in the region.",
+        "mrds_id": "10310604", "production_value": "$55-150M"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.24639, 37.78194] },
+      "properties": {
+        "id": 107, "name": "Moccasin & Golden Key Mine — Serpentinite Contact (MRDS #10034585)",
+        "rank": 0, "category": "lode_mine", "owner": "Private — creek drainage may cross USFS",
+        "drive_min": 20, "claim_density": "medium",
+        "gold_type": "Vein gold at serpentinite footwall/metadiabase hanging wall contact",
+        "why_promising": "Unusual serpentine footwall / metadiabase hanging wall geometry. 1,600-ft adit worked 5-ft N45W vein. Serpentinite contact deposits can produce coarse free gold. Big Jackass Creek drains toward Tuolumne — unclaimed placer may remain in creek gravels. Closest documented mine to Groveland (~6 mi SSE).",
+        "notes": "Mine is private. Big Jackass Creek drainage passes through mixed private/USFS land — verify with Groveland RD. Only 15-20 min drive from Groveland.",
+        "mrds_id": "10034585", "production_value": "Not recorded"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.382, 37.98286] },
+      "properties": {
+        "id": 108, "name": "Sonora District — 28-lb Holden Chispa Nugget (MRDS #10310682)",
+        "rank": 0, "category": "lode_mine", "owner": "Private + City of Sonora",
+        "drive_min": 50, "claim_density": "high",
+        "gold_type": "Coarse placer — 28-lb 'Holden Chispa' nugget documented; $11M total placer",
+        "why_promising": "The Sonora District produced $11M in placer gold and the famous 28-lb Holden Chispa nugget in the 1850s. Adjacent Pocket Belt mines contributed crystallized coarse gold to this drainage. BLM and USFS parcels on the outskirts may still hold residual gold.",
+        "notes": "City of Sonora is mostly private. Look for BLM parcels on outskirts and in creek corridors downstream of the historic placer ground.",
+        "mrds_id": "10310682", "production_value": "$11M placer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.4108, 37.99136] },
+      "properties": {
+        "id": 109, "name": "Pocket Belt / Tuttletown-Jackass Hill — Telluride Gold Zone (MRDS #10310669)",
+        "rank": 0, "category": "lode_mine", "owner": "BLM (Jackass Hill parcel) + private",
+        "drive_min": 50, "claim_density": "medium",
+        "gold_type": "Crystallized pocket gold + tellurides (petzite, calaverite, sylvanite) — ~$100M eroded to downstream placers",
+        "why_promising": "Epithermal Pocket Belt: seams inches wide swelling to rich nodes. Jackass Hill BLM parcel is publicly accessible. Metal detecting in eluvial soil above pocket vein outcrops is the recommended method. Mark Twain country — the richest small-vein gold zone in the Mother Lode.",
+        "notes": "Jackass Hill historical marker (BLM parcel) is publicly accessible. Tuttletown Recreation Area (BLM) on New Melones is adjacent. Telluride minerals = coarser crystallized gold.",
+        "mrds_id": "10310669", "production_value": "~$5.5M direct + ~$100M dispersed to placer"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.20780, 38.0436] },
+      "properties": {
+        "id": 110, "name": "Confidence Mine — East Belt Granodiorite Lode (MRDS #10238709)",
+        "rank": 0, "category": "lode_mine", "owner": "Private",
+        "drive_min": 60, "claim_density": "medium",
+        "gold_type": "Free gold + galena in N-NW quartz veins 1-5 ft wide — $4.25M production",
+        "why_promising": "East Belt granodiorite host. 1,200-ft depth worked. Gold with galena and pyrite in 1-5 ft veins. Drainage below mine is a reasonable detecting target on unclaimed USFS land.",
+        "notes": "Mine portal private. Check for USFS land in creek drainage below the mine for casual-use access.",
+        "mrds_id": "10238709", "production_value": "$4.25M"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-120.2296, 37.8466] },
+      "properties": {
+        "id": 0, "name": "Groveland, CA (Base Camp)",
+        "rank": 0, "category": "base", "owner": "Town", "drive_min": 0,
+        "notes": "Starting point. Groveland Ranger District: (209) 962-7825. BLM Mother Lode FO: (916) 941-3101."
+      }
+    }
+  ]
+}

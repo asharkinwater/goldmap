@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gold Prospecting Map — Groveland CA</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #sidebar {
+      width: 340px;
+      min-width: 280px;
+      background: #222;
+      border-right: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    #sidebar-header {
+      padding: 16px;
+      background: #1a1a1a;
+      border-bottom: 1px solid #333;
+    }
+
+    #sidebar-header h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #f5c842;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    #sidebar-header p {
+      font-size: 11px;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    #filter-bar {
+      padding: 10px 14px;
+      background: #1e1e1e;
+      border-bottom: 1px solid #333;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      color: #aaa;
+      border-radius: 12px;
+      padding: 3px 10px;
+      font-size: 11px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: #f5c842;
+      color: #111;
+      border-color: #f5c842;
+    }
+
+    #location-list {
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .loc-card {
+      padding: 12px 14px;
+      border-bottom: 1px solid #2a2a2a;
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+
+    .loc-card:hover { background: #2a2a2a; }
+    .loc-card.selected { background: #2a2a2a; border-left: 3px solid #f5c842; }
+
+    .loc-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .rank-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #f5c842;
+      color: #111;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .rank-badge.base { background: #555; color: #ccc; }
+
+    .loc-name { font-size: 12px; font-weight: 600; color: #e0e0e0; line-height: 1.3; }
+
+    .loc-meta {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .tag-drive { background: #2a3a2a; color: #7ecf7e; }
+    .tag-owner { background: #2a2a3a; color: #8ab4f8; }
+    .tag-claims-low { background: #2a3a2a; color: #7ecf7e; }
+    .tag-claims-medium { background: #3a3a2a; color: #f5c842; }
+    .tag-claims-high { background: #3a2a2a; color: #f87878; }
+    .tag-verify { background: #3a2a1a; color: #ffa040; }
+    .tag-blm { background: #2a3a3a; color: #7ecfcf; }
+
+    .loc-gold {
+      font-size: 10px;
+      color: #888;
+      margin-top: 4px;
+      font-style: italic;
+    }
+
+    #detail-panel {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 340px;
+      max-height: 55vh;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+    }
+
+    #detail-panel.open { display: block; }
+
+    #detail-close {
+      position: sticky;
+      top: 0;
+      background: #2a2a2a;
+      border-bottom: 1px solid #333;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #f5c842;
+      z-index: 1;
+    }
+
+    #detail-close button {
+      background: none;
+      border: none;
+      color: #888;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    #detail-content {
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .detail-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 6px;
+    }
+
+    .detail-label {
+      color: #888;
+      min-width: 100px;
+      font-size: 11px;
+    }
+
+    .detail-value { color: #e0e0e0; }
+
+    .detail-value.yes { color: #7ecf7e; }
+    .detail-value.no { color: #f87878; }
+    .detail-value.warn { color: #ffa040; }
+
+    .detail-notes {
+      background: #1a1a1a;
+      border-radius: 4px;
+      padding: 8px 10px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    .detail-why {
+      background: #1a2a1a;
+      border-left: 3px solid #f5c842;
+      padding: 8px 10px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    #map { flex: 1; }
+
+    .leaflet-popup-content-wrapper {
+      background: #222;
+      color: #e0e0e0;
+      border: 1px solid #444;
+      border-radius: 6px;
+    }
+
+    .leaflet-popup-tip { background: #222; }
+    .leaflet-popup-content { font-size: 12px; line-height: 1.5; margin: 8px 12px; }
+    .leaflet-popup-content b { color: #f5c842; }
+
+    .legend {
+      position: absolute;
+      bottom: 30px;
+      left: 360px;
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 10px 14px;
+      z-index: 1000;
+      font-size: 11px;
+      color: #aaa;
+    }
+
+    .legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+    #layer-controls {
+      padding: 10px 14px;
+      background: #1e1e1e;
+      border-top: 1px solid #333;
+    }
+
+    #layer-controls h3 { font-size: 11px; color: #888; margin-bottom: 8px; text-transform: uppercase; }
+
+    .layer-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .layer-toggle input { cursor: pointer; accent-color: #f5c842; }
+
+    #claim-stats {
+      font-size: 10px;
+      color: #666;
+      margin-top: 4px;
+      padding: 4px 0;
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .radius-label {
+      font-size: 10px;
+      color: #555;
+      font-style: italic;
+    }
+
+    #coords-bar {
+      position: absolute;
+      bottom: 0;
+      left: 340px;
+      right: 0;
+      background: rgba(30,30,30,0.85);
+      padding: 4px 12px;
+      font-size: 10px;
+      color: #666;
+      z-index: 900;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<div id="sidebar">
+  <div id="sidebar-header">
+    <h1>Gold Prospecting — Groveland CA</h1>
+    <p>Tuolumne County · Sierra Nevada Foothills · Metal Detecting &amp; Sluicing</p>
+  </div>
+
+  <div id="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="prospect-only">Prospect Sites</button>
+    <button class="filter-btn" data-filter="nugget_historic">Nugget Areas</button>
+    <button class="filter-btn" data-filter="blm_designated">BLM Official</button>
+    <button class="filter-btn" data-filter="lode_mine">MRDS Mines</button>
+    <button class="filter-btn" data-filter="low-verify">Low Claims</button>
+  </div>
+
+  <div id="location-list"></div>
+
+  <div id="layer-controls">
+    <h3>Map Layers</h3>
+    <label class="layer-toggle"><input type="checkbox" id="toggle-claims" checked /> BLM Active Mining Claims <span style="color:#f87878">(5,635)</span></label>
+    <label class="layer-toggle"><input type="checkbox" id="toggle-radii" checked /> Drive time rings (1hr / 2hr)</label>
+    <label class="layer-toggle"><input type="checkbox" id="toggle-topo" /> Topo overlay (USGS)</label>
+    <label class="layer-toggle"><input type="checkbox" id="toggle-sat" /> Satellite base</label>
+    <div id="claim-stats">BLM data: real polygons from gis.blm.gov MLRS API · 2026</div>
+  </div>
+</div>
+
+<div id="map"></div>
+
+<div class="legend">
+  <div style="font-size:10px;color:#666;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Prospecting Sites</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#7ecf7e"></div> Low Claim Density</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#c8d060"></div> Low-Medium Claims</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#ffa040"></div> Medium Claim Density</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#f87878"></div> High Claim Density</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#ff4444"></div> Historic Nugget Site</div>
+  <div style="font-size:10px;color:#666;margin:6px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Reference Points</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#cc88ff"></div> USGS MRDS Mine (private)</div>
+  <div class="legend-row"><div class="legend-dot" style="background:#8ab4f8"></div> Groveland Base Camp</div>
+  <div style="font-size:10px;color:#666;margin:6px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Overlays</div>
+  <div class="legend-row"><div style="width:20px;height:2px;border-top:2px dashed #f5c842;margin-right:4px"></div> ~1 hr drive</div>
+  <div class="legend-row"><div style="width:20px;height:2px;border-top:2px dashed #8ab4f8;margin-right:4px"></div> ~2 hr drive</div>
+  <div class="legend-row"><div style="width:12px;height:12px;background:rgba(248,120,120,0.25);border:1px solid #f87878;margin-right:4px;border-radius:2px"></div> Active BLM Claim (Placer)</div>
+  <div class="legend-row"><div style="width:12px;height:12px;background:rgba(255,107,53,0.25);border:1px solid #ff6b35;margin-right:4px;border-radius:2px"></div> Active BLM Claim (Lode)</div>
+</div>
+
+<div id="detail-panel">
+  <div id="detail-close">
+    <span id="detail-title"></span>
+    <button onclick="closeDetail()">✕</button>
+  </div>
+  <div id="detail-content"></div>
+</div>
+
+<div id="coords-bar">Click the map to see coordinates</div>
+
+<script>
+const locations = [];
+
+fetch('data/locations.geojson')
+  .then(r => r.json())
+  .then(geojson => init(geojson));
+
+let map, markers = [], selectedMarker = null;
+let streetLayer, topoLayer, satLayer, claimsLayer, radiiLayer;
+
+function init(geojson) {
+  map = L.map('map', { zoomControl: true }).setView([37.78, -120.28], 11);
+
+  streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap',
+    maxZoom: 19
+  }).addTo(map);
+
+  topoLayer = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'USGS Topo',
+    maxZoom: 16,
+    opacity: 0.6
+  });
+
+  satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri World Imagery',
+    maxZoom: 19
+  });
+
+  // Draw drive-time radius rings from Groveland
+  const groveland = [37.8466, -120.2296];
+  radiiLayer = L.layerGroup();
+
+  // Approximate: 1hr ≈ 45 miles (72km), 2hr ≈ 90 miles (145km) driving in mountains
+  const ring1 = L.circle(groveland, { radius: 72000, color: '#f5c842', weight: 1.5, fill: false, dashArray: '6 4', opacity: 0.5 });
+  const ring2 = L.circle(groveland, { radius: 145000, color: '#8ab4f8', weight: 1.5, fill: false, dashArray: '6 4', opacity: 0.35 });
+  const label1 = L.marker([37.8466 + 0.648, -120.2296], { icon: L.divIcon({ className:'', html:'<span class="radius-label" style="color:#f5c842">~1 hr</span>' }) });
+  const label2 = L.marker([37.8466 + 1.31, -120.2296], { icon: L.divIcon({ className:'', html:'<span class="radius-label" style="color:#8ab4f8">~2 hr</span>' }) });
+  radiiLayer.addLayer(ring1).addLayer(ring2).addLayer(label1).addLayer(label2);
+  radiiLayer.addTo(map);
+
+  // Load BLM active claims polygon layer
+  fetch('layers/blm_active_claims_all.geojson')
+    .then(r => r.json())
+    .then(claimData => {
+      claimsLayer = L.geoJSON(claimData, {
+        style: feat => {
+          const t = feat.properties.CSE_TYPE_NR;
+          return {
+            color: t === '384201' ? '#ff6b35' : '#f87878',
+            weight: 1,
+            fillColor: t === '384201' ? '#ff6b35' : '#f87878',
+            fillOpacity: 0.25,
+            opacity: 0.7
+          };
+        },
+        onEachFeature: (feat, layer) => {
+          const p = feat.properties;
+          const typeName = p.CSE_TYPE_NR === '384201' ? 'Lode' : p.CSE_TYPE_NR === '384101' ? 'Placer' : 'Claim';
+          layer.bindPopup(
+            `<b style="color:#f87878">⚠ Active Mining Claim</b><br/>` +
+            `<b>${p.CSE_NAME || 'Unnamed'}</b><br/>` +
+            `Type: ${typeName}<br/>` +
+            `Serial: ${p.CSE_NR || '—'}<br/>` +
+            `Acres: ${p.RCRD_ACRS || '—'}<br/>` +
+            `<span style="color:#ffa040">Do NOT prospect on active claims without permission</span>`
+          );
+        }
+      });
+      claimsLayer.addTo(map);
+    })
+    .catch(e => console.warn('Claims layer load failed:', e));
+
+  map.on('mousemove', e => {
+    document.getElementById('coords-bar').textContent =
+      `Lat: ${e.latlng.lat.toFixed(5)}  Lon: ${e.latlng.lng.toFixed(5)}  |  Right-click to copy`;
+  });
+
+  map.on('contextmenu', e => {
+    const text = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('coords-bar').textContent = `Copied: ${text}`;
+    });
+  });
+
+  geojson.features.forEach(f => {
+    const p = f.properties;
+    const latlng = [f.geometry.coordinates[1], f.geometry.coordinates[0]];
+
+    const color = p.category === 'base' ? '#8ab4f8' :
+                  p.category === 'lode_mine' ? '#cc88ff' :
+                  p.category === 'nugget_historic' ? '#ff4444' :
+                  p.claim_density === 'low' ? '#7ecf7e' :
+                  p.claim_density === 'low-medium' ? '#c8d060' :
+                  p.claim_density === 'medium' ? '#ffa040' :
+                  p.claim_density === 'high' ? '#f87878' : '#f5c842';
+
+    const size = p.category === 'base' ? 10 :
+                 p.category === 'lode_mine' ? 8 : 14;
+
+    const marker = L.circleMarker(latlng, {
+      radius: size,
+      fillColor: color,
+      color: '#111',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.9,
+      feature: f
+    });
+
+    const label = p.rank > 0 ? `<b>#${p.rank} — ${p.name}</b>` : `<b>${p.name}</b>`;
+    marker.bindPopup(`
+      ${label}<br/>
+      <span style="color:#aaa">${p.owner || ''}</span><br/>
+      ${p.drive_min > 0 ? `Drive: ~${p.drive_min} min from Groveland` : ''}
+    `);
+
+    marker.on('click', () => showDetail(f, marker));
+    marker.addTo(map);
+    markers.push({ marker, feature: f });
+    locations.push(f);
+  });
+
+  buildList(locations);
+  setupFilters();
+  setupLayerToggles();
+}
+
+function claimTag(density) {
+  if (!density) return '';
+  const cls = density === 'low' ? 'tag-claims-low' :
+              density === 'low-medium' ? 'tag-claims-low' :
+              density === 'medium' ? 'tag-claims-medium' : 'tag-claims-high';
+  return `<span class="tag ${cls}">${density} claims</span>`;
+}
+
+function buildList(features) {
+  const list = document.getElementById('location-list');
+  list.innerHTML = '';
+  features
+    .filter(f => f.properties.category !== 'base')
+    .sort((a, b) => a.properties.rank - b.properties.rank)
+    .forEach(f => {
+      const p = f.properties;
+      const card = document.createElement('div');
+      card.className = 'loc-card';
+      card.dataset.id = p.id;
+      const isMine = p.category === 'lode_mine';
+      const isNugget = p.category === 'nugget_historic';
+      card.innerHTML = `
+        <div class="loc-card-header">
+          <div class="rank-badge ${isMine ? 'base' : ''}" style="${isMine ? 'background:#cc88ff;color:#111' : isNugget ? 'background:#ff4444' : ''}">${isMine ? '⛏' : isNugget ? '★' : p.rank}</div>
+          <div class="loc-name">${p.name}</div>
+        </div>
+        <div class="loc-meta">
+          ${p.drive_min > 0 ? `<span class="tag tag-drive">~${p.drive_min} min</span>` : ''}
+          <span class="tag tag-owner" style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${(p.owner||'').split('(')[0].trim()}</span>
+          ${claimTag(p.claim_density)}
+          ${p.verify_claims ? '<span class="tag tag-verify">verify claims</span>' : ''}
+          ${p.category === 'blm_designated' ? '<span class="tag tag-blm">BLM endorsed</span>' : ''}
+          ${isMine ? `<span class="tag" style="background:#2a1a3a;color:#cc88ff">MRDS ${p.mrds_id||''}</span>` : ''}
+          ${isNugget ? '<span class="tag" style="background:#3a1a1a;color:#ff8888">nugget history</span>' : ''}
+        </div>
+        <div class="loc-gold">${p.gold_type || ''}</div>
+      `;
+      card.addEventListener('click', () => {
+        const entry = markers.find(m => m.feature.properties.id === p.id);
+        if (entry) {
+          map.setView([f.geometry.coordinates[1], f.geometry.coordinates[0]], 14);
+          showDetail(f, entry.marker);
+        }
+      });
+      list.appendChild(card);
+    });
+}
+
+function showDetail(feature, marker) {
+  const p = feature.properties;
+  document.getElementById('detail-title').textContent = p.name;
+  document.getElementById('detail-content').innerHTML = `
+    <div class="detail-row">
+      <span class="detail-label">Owner</span>
+      <span class="detail-value">${p.owner}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Drive</span>
+      <span class="detail-value">~${p.drive_min} min from Groveland</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Claim Density</span>
+      <span class="detail-value ${p.claim_density === 'high' ? 'warn' : 'yes'}">${p.claim_density || 'unknown'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Panning</span>
+      <span class="detail-value ${p.panning ? 'yes' : 'no'}">${p.panning ? 'Yes' : 'No'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Sluicing</span>
+      <span class="detail-value ${p.sluicing ? 'yes' : 'no'}">${p.sluicing ? 'Yes' : 'No'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Metal Detect</span>
+      <span class="detail-value ${p.metal_detecting ? 'yes' : 'no'}">${p.metal_detecting ? 'Yes' : 'No'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Suction Dredge</span>
+      <span class="detail-value no">No — CA statewide ban</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Permit</span>
+      <span class="detail-value yes">${p.permit_required ? 'Required' : 'Not required (casual use)'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Access</span>
+      <span class="detail-value">${p.access || '—'}</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">GPS</span>
+      <span class="detail-value" style="font-family:monospace;font-size:11px">${feature.geometry.coordinates[1].toFixed(5)}°N, ${feature.geometry.coordinates[0].toFixed(5)}°W</span>
+    </div>
+    <div class="detail-row">
+      <span class="detail-label">Contact</span>
+      <span class="detail-value">${p.contact || '—'}</span>
+    </div>
+    ${p.mrds_id ? `
+    <div class="detail-row">
+      <span class="detail-label">MRDS ID</span>
+      <span class="detail-value" style="font-family:monospace">${p.mrds_id}</span>
+    </div>` : ''}
+    ${p.production_value ? `
+    <div class="detail-row">
+      <span class="detail-label">Production</span>
+      <span class="detail-value warn">${p.production_value}</span>
+    </div>` : ''}
+    <div class="detail-why">${p.why_promising || ''}</div>
+    <div class="detail-notes">${p.notes || ''}</div>
+    <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+      <button onclick="openGoogleMaps(${feature.geometry.coordinates[1]}, ${feature.geometry.coordinates[0]})"
+        style="background:#2a3a2a;border:1px solid #4a6a4a;color:#7ecf7e;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:11px;">
+        Open in Google Maps
+      </button>
+      <button onclick="copyCoords(${feature.geometry.coordinates[1]}, ${feature.geometry.coordinates[0]})"
+        style="background:#2a2a3a;border:1px solid #4a4a6a;color:#8ab4f8;padding:5px 12px;border-radius:4px;cursor:pointer;font-size:11px;">
+        Copy GPS Coords
+      </button>
+    </div>
+  `;
+  document.getElementById('detail-panel').classList.add('open');
+
+  document.querySelectorAll('.loc-card').forEach(c => c.classList.remove('selected'));
+  const card = document.querySelector(`.loc-card[data-id="${p.id}"]`);
+  if (card) { card.classList.add('selected'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+}
+
+function openGoogleMaps(lat, lon) {
+  window.open(`https://maps.google.com/?q=${lat},${lon}`, '_blank');
+}
+
+function copyCoords(lat, lon) {
+  navigator.clipboard.writeText(`${lat.toFixed(5)}, ${lon.toFixed(5)}`);
+  document.getElementById('coords-bar').textContent = `Copied: ${lat.toFixed(5)}, ${lon.toFixed(5)}`;
+}
+
+function setupFilters() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      const prospectCats = ['placer_river','placer_hike','placer_detect','blm_designated','nugget_historic'];
+      const filtered = filter === 'all' ? locations :
+                       filter === 'low-verify' ? locations.filter(f => !f.properties.verify_claims && f.properties.category !== 'lode_mine') :
+                       filter === 'prospect-only' ? locations.filter(f => prospectCats.includes(f.properties.category)) :
+                       locations.filter(f => f.properties.category === filter);
+      buildList(filtered);
+      markers.forEach(({ marker, feature }) => {
+        const cat = feature.properties.category;
+        const show = filter === 'all' ? true :
+                     filter === 'low-verify' ? (!feature.properties.verify_claims && cat !== 'lode_mine') :
+                     filter === 'prospect-only' ? prospectCats.includes(cat) :
+                     cat === filter;
+        if (show) marker.addTo(map); else map.removeLayer(marker);
+      });
+    });
+  });
+}
+
+function setupLayerToggles() {
+  document.getElementById('toggle-claims').addEventListener('change', e => {
+    if (claimsLayer) {
+      if (e.target.checked) claimsLayer.addTo(map); else map.removeLayer(claimsLayer);
+    }
+  });
+
+  document.getElementById('toggle-radii').addEventListener('change', e => {
+    if (radiiLayer) {
+      if (e.target.checked) radiiLayer.addTo(map); else map.removeLayer(radiiLayer);
+    }
+  });
+
+  document.getElementById('toggle-topo').addEventListener('change', e => {
+    if (e.target.checked) topoLayer.addTo(map); else map.removeLayer(topoLayer);
+  });
+
+  document.getElementById('toggle-sat').addEventListener('change', e => {
+    if (e.target.checked) {
+      map.removeLayer(streetLayer);
+      satLayer.addTo(map);
+      if (document.getElementById('toggle-topo').checked) topoLayer.addTo(map);
+    } else {
+      map.removeLayer(satLayer);
+      streetLayer.addTo(map);
+    }
+  });
+}
+</script>
+</body>
+</html>
